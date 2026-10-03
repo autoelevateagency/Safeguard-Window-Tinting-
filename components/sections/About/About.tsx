@@ -3,16 +3,24 @@
 import type { ReactElement } from "react";
 import { useLocale } from "@/context/LocaleContext";
 import { Reveal } from "@/components/ui/Reveal";
+import { MediaFrame } from "@/components/ui/MediaFrame";
+import { siteMedia } from "@/data/media";
 
 export const About = (): ReactElement => {
   const { dictionary } = useLocale();
   const t = dictionary.about;
+  const media = siteMedia.about;
 
   return (
     <section id="about">
-      <div className="ph">
-        <i>{t.photoLabel}</i>
-      </div>
+      <MediaFrame
+        type={media.type}
+        src={media.src}
+        alt={media.alt}
+        label={t.photoLabel}
+        poster={siteMedia.aboutPoster.src}
+        sizes="(max-width: 900px) 100vw, 55vw"
+      />
       <div className="ab">
         <span className="lb">{t.eyebrow}</span>
         <Reveal as="h2" className="h">

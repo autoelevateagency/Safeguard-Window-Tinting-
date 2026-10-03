@@ -3,6 +3,8 @@
 import type { ReactElement } from "react";
 import { useLocale } from "@/context/LocaleContext";
 import { Reveal } from "@/components/ui/Reveal";
+import { MediaFrame } from "@/components/ui/MediaFrame";
+import { siteMedia } from "@/data/media";
 
 export const Gallery = (): ReactElement => {
   const { dictionary } = useLocale();
@@ -19,9 +21,15 @@ export const Gallery = (): ReactElement => {
         </a>
       </div>
       <div className="gg">
-        {t.items.map((item) => (
-          <Reveal key={item.label} className={`ph ${item.className}`}>
-            <i>{item.label}</i>
+        {siteMedia.gallery.map((media, index) => (
+          <Reveal key={media.src} className={`gg-cell ${media.className}`}>
+            <MediaFrame
+              type={media.type}
+              src={media.src}
+              alt={media.alt}
+              label={t.items[index]?.label}
+              sizes="(max-width: 900px) 100vw, 70vw"
+            />
           </Reveal>
         ))}
       </div>

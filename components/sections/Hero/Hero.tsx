@@ -2,14 +2,24 @@
 
 import type { ReactElement } from "react";
 import { useLocale } from "@/context/LocaleContext";
+import { MediaFrame } from "@/components/ui/MediaFrame";
+import { siteMedia } from "@/data/media";
 
 export const Hero = (): ReactElement => {
   const { dictionary } = useLocale();
   const t = dictionary.hero;
+  const media = siteMedia.hero;
 
   return (
     <header id="hero">
-      <div className="ph" aria-hidden="true" />
+      <MediaFrame
+        type={media.type}
+        src={media.src}
+        alt={media.alt}
+        poster={media.poster}
+        priority
+        sizes="100vw"
+      />
       <div className="hv" aria-hidden="true" />
       <div className="lb hm">{t.sideLabel}</div>
       <div className="hc">
